@@ -1,0 +1,38 @@
+[global_config]
+  borderless = True
+  tab_position = hidden
+  inactive_color_offset = 0.9467455621301775
+  line_height = 1.1
+[keybindings]
+  cycle_prev = ""
+  page_up = <Primary><Alt>Left
+  page_down = <Primary><Alt>Right
+  line_up = <Primary><Alt>Up
+  line_down = <Primary><Alt>Down
+  edit_tab_title = ""
+[profiles]
+  [[default]]
+    visible_bell = True
+    icon_bell = False
+    background_color = "#1f2335"
+    background_darkness = 0.95
+    background_type = transparent
+    cursor_color = "#fd05d2"
+    cursor_color_fg = False
+    font = Fira Code Bold 12
+    foreground_color = "#7f88ae"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    palette = "#2e3436:#cc0000:#4e9a06:#c4a000:#0070ff:#d100f3:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ff8b00:#34e2e2:#eeeeec"
+    use_system_font = False
+    bold_is_bright = True
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
