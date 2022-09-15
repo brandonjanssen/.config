@@ -11,6 +11,7 @@ pacstall -I shell-color-scripts
 ```
 pacstall -I pfetch-bin
 ```
+### [Install](https://starship.rs/) Starship for nice Prompt
 ```
-pacstall -I starship-bin  ## For Nice Terminal Prompt
+pacstall -I starship-bin  
 ```
