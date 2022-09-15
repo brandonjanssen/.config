@@ -1,0 +1,34 @@
+# default theme by Arn <arn.alduomacil@gmail.com>
+
+background				= magenta		default
+frame					= magenta		default
+window_title			= magenta		default
+directory				= magenta		default
+selected_directory		= magenta		default	reverse
+playlist				= magenta		default
+selected_playlist		= magenta		default	reverse
+file					= magenta		default
+selected_file			= white		magenta underline
+marked_file				= white		default	blink
+marked_selected_file	= magenta		default	bold,reverse
+info					= magenta		default	underline
+status					= magenta		default
+title					= magenta		default	bold
+state					= magenta		default
+current_time			= magenta		default	bold
+time_left				= magenta		default	bold
+total_time				= magenta		default	bold
+time_total_frames		= magenta		default
+sound_parameters		= magenta		default	bold
+legend					= magenta		default
+disabled				= magenta		default
+enabled					= magenta		default	bold
+empty_mixer_bar			= magenta		default
+filled_mixer_bar		= magenta		default	reverse
+empty_time_bar			= magenta		default
+filled_time_bar			= magenta		default	reverse
+entry					= magenta		default
+entry_title				= magenta		default
+error					= magenta		default	bold,underline
+message					= magenta		default
+plist_time				= magenta		default
