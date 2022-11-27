@@ -7,6 +7,7 @@ There are not many differences between versions aside from Python features you m
 Core Dependencies
 Here are Qtile's core runtime dependencies and the package names that provide them in Ubuntu. Note that Qtile can run with one of two backends -- X11 and Wayland -- so only the dependencies of one of these is required.
 ```
+git clone https://github.com/elparaguayo/qtile-extras.git ##### FOR BAR DECORATIONS
 sudo apt install xserver-xorg
 sudo apt install python3 
 sudo apt install python3-pip
