@@ -73,8 +73,11 @@ keys = [
          #=-/ Window manipulation /-=#
         #  Key([mod], "j", lazy.layout.down(), desc='Move focus down in current stack pane'),
         #  Key([mod], "k", lazy.layout.up(), desc='Move focus up in current stack pane'),
-         Key([mod, "shift"], "j", lazy.layout.shuffle_down(), lazy.layout.section_down(), desc='Move windows down in current stack'),
-         Key([mod, "shift"], "k", lazy.layout.shuffle_up(), lazy.layout.section_up(), desc='Move windows up in current stack'),
+         Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+         Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+         Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+         Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+   
          Key([mod], "h", lazy.layout.shrink(), lazy.layout.decrease_nmaster(), desc='Shrink window (MonadTall), decrease number in master pane (Tile)'),
          Key([mod], "l", lazy.layout.grow(), lazy.layout.increase_nmaster(), desc='Expand window (MonadTall), increase number in master pane (Tile)'),
         #  Key([mod], "n", lazy.layout.normalize(), desc='normalize window size ratios'),
@@ -86,10 +89,15 @@ keys = [
          Key([mod], "Tab", lazy.layout.next(), desc='Switch window focus to other pane(s) of stack'),
          
          #=-/ Multimedia keys /-=#
-         Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 0 -5%")),
-         Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%")),
-         Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+         # Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 0 -5%")),
+         # Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%")),
+         # Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 
+        ##### WIREPLUMBER VOLUME CONTROLS
+         Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
+         Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
+         Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
+         
          
         # INCREASE/DECREASE BRIGHTNESS
         Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 10")),
@@ -532,7 +540,7 @@ def init_widgets_list():
                     #   padding=10
                         decorations=[
                            BorderDecoration(
-                               colour = "#f3f50c",
+                               colour = "#5988BE",
                                border_width = [0, 0, 2, 0],
                                padding_x = 0,
                                padding_y = None,
@@ -636,3 +644,5 @@ def start_once():
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
+
+                   
