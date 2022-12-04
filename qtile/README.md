@@ -15,7 +15,6 @@ sudo apt install psutil ### this is for bar to display temp
 pip install python3-xcffib
 pip install python3-cffi
 pip install python3-cairocffi
-pip install python3-xcffib
 pip install --no-cache-dir cairocffi
 ```
 ```
