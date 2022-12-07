@@ -98,7 +98,7 @@ keys = [
          # Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 
         ##### WIREPLUMBER VOLUME CONTROLS
-         Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),  ## PIPEWIRE MUST BE INSTALLED AND WIREPLUMBER TO USE wpctl
+         Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
          Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
          Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
          
@@ -614,7 +614,11 @@ cursor_warp = True
 
 #=-/ Window rules /-=#
 
-floating_layout = layout.Floating(float_rules=[
+floating_layout = layout.Floating(
+    border_width=3,
+    border_focus="#3f92f7",
+    border_normal="#EC8011",
+    float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     # default_float_rules include: utility, notification, toolbar, splash, dialog,
     # file_progress, confirm, download and error.
@@ -626,13 +630,15 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class="confirmreset"),  # gitk
     Match(wm_class="makebranch"),  # gitk
     Match(wm_class="maketag"),  # gitk
+    Match(wm_class="Galculator"),  # gitk Galculator
+    Match(wm_class="galculator"),  # gitk Galculator
     Match(wm_class="blueman-manager"),  # gitk
     Match(wm_class="ssh-askpass"),  # ssh-askpass
     Match(wm_class="Gpick"),  # ssh-askpass
     Match(wm_class="gpick"),  # ssh-askpass
     Match(wm_class="browser-window"),  # ssh-askpass
     Match(wm_class="Skype"),  # ssh-askpass
-    Match(wm_class="google-chrome"),  # ssh-askpass
+    # Match(wm_class="google-chrome"),  # ssh-askpass
     Match(wm_class="pavucontrol"),  # ssh-askpass
     Match(wm_class="Imager"),  # ssh-askpass
     Match(wm_class="SpeedCrunch"),  # ssh-askpass
@@ -648,12 +654,8 @@ floating_layout = layout.Floating(float_rules=[
 
 ])
 
-floating_layout = layout.Floating(
-    border_width=3,
-    border_focus="#3f92f7",
-    border_normal="#fdb302",
-)
-auto_fullscreen = True
+
+# auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 @hook.subscribe.startup_once
@@ -671,5 +673,3 @@ def start_once():
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-
-                   
