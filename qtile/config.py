@@ -26,7 +26,7 @@ mod = "mod4"
 mod1 = "alt"
 mod2 = "control" 
 myTerm = "xfce4-terminal" 
-# myBrowser = "chromium"
+# myBrowser = "google-chrome-stable"
 # logoutMenu = "kitty -e herbst-logout.sh"
 
 #=-/ Keybindings /-=#
@@ -39,14 +39,14 @@ keys = [
         Key([mod], "Return", lazy.spawn("kitty -e fish"), desc='Run Launcher'),
         Key([mod], "r", lazy.spawn("feh --randomize --bg-fill /home/dmne/Pictures/background")),
         Key([mod], "space", lazy.spawn("rofi -show drun -show-icons -modi drun,run")),
+        Key([mod2,"shift"], "space", lazy.spawn("kitty -e  /home/dmne/.config/nnn/plugins/launch")),
         Key([mod2], "space", lazy.spawn("rofi -show calc")),
-        Key([mod], "x", lazy.spawn("/usr/bin/clearine ")),
+        Key([mod], "x", lazy.spawn(".config/rofi/powermenu.sh ")),
         Key([mod], "t", lazy.spawn("thunar")),
         Key([mod], "e", lazy.spawn("lapce")),
         Key([mod], "o", lazy.spawn("obsidian")),
         Key([mod], "d", lazy.spawn("telegram-desktop")),
-        Key([mod, "shift"], "t", lazy.spawn("kitty -e ranger"), desc='Ranger'),
-        Key([mod,"control"], "t", lazy.spawn("kitty -e nnn"), desc='Ranger'),
+        Key([mod, "shift"], "t", lazy.spawn("kitty -e nnn"), desc='NNN'),
         #=-/ Browsers /-=#
         Key([mod], "w", lazy.spawn("google-chrome-stable"), desc='chromium-browser'),
 
@@ -119,7 +119,7 @@ keys = [
 
          #=-/ Scratchpads /-=#
          Key([mod2], "1", lazy.group['scratchpad'].dropdown_toggle('term')),
-         Key([mod2], "2", lazy.group['manager'].dropdown_toggle('ranger')),
+         Key([mod2], "2", lazy.group['manager'].dropdown_toggle('nnn')),
          Key([mod2], "3", lazy.group['pulse'].dropdown_toggle('mixer')),
          Key([mod2], "4", lazy.group['tel'].dropdown_toggle('telegram')),
          Key([mod2], "9", lazy.group['music'].dropdown_toggle('tunes')),
@@ -142,8 +142,8 @@ groups = [Group(" 1 ", layout='monadtall'),
           ScratchPad("logout",[DropDown("exitMenu", "/usr/bin/clearine ", x=0.40, y=0.30, width=0.20, height=0.20, on_focus_lost_hide=False)]),
           ScratchPad("tel",[DropDown("telegram", "telegram-desktop", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
           ScratchPad("scratchpad",[DropDown("term", "kitty -e fish", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
-          ScratchPad("manager",[DropDown("ranger", "kitty -e ranger", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
-          ScratchPad("pulse",[DropDown("mixer", "kitty -e pulsemixer", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
+          ScratchPad("manager",[DropDown("nnn", "xfce4-terminal -e nnn", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
+          ScratchPad("pulse",[DropDown("mixer", "xfce4-terminal -e pulsemixer", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
 ]
 
 from libqtile.dgroups import simple_key_binder
@@ -636,6 +636,8 @@ floating_layout = layout.Floating(
     Match(wm_class="ssh-askpass"),  # ssh-askpass
     Match(wm_class="Gpick"),  # ssh-askpass
     Match(wm_class="gpick"),  # ssh-askpass
+    Match(wm_class="gammy"),  # ssh-askpass
+    Match(wm_class="Gammy"),  # ssh-askpass
     Match(wm_class="browser-window"),  # ssh-askpass
     Match(wm_class="Skype"),  # ssh-askpass
     # Match(wm_class="google-chrome"),  # ssh-askpass
