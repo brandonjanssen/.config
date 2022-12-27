@@ -1,0 +1,92 @@
+configuration {
+scroll-method:                  0;
+disable-history:                false;
+ sidebar-mode: 		    false;
+//   display-drun: "Applications:";
+//   display-window: "Windows:";
+//   drun-display-format: "{name}";
+ font: "FiraCode NFM Bold 10";
+//   modi: "window,run,drun,emoji,calc";
+}
+
+@theme "/dev/null"
+
+* {
+bg: #11121D;
+bg-alt: #444b6a;
+fg: #FFFFFF;
+fg-alt: #787c99;
+background-color: @bg;
+
+border: 0;
+margin: 0;
+padding: 0;
+spacing: 0;
+}
+
+window {
+    width: 20%;
+    height: 30%;
+    border:                         0;
+    padding:                        10;
+    transparency:                   "real";
+    // width:                          180px;
+    // location:                       east;
+/*y-offset:                       18;*/
+/*x-offset:	                    850;*/
+    transparency:                   "real"; 
+}
+
+element {
+  padding: 2 0;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: #00b205;
+}
+
+element.selected.active {
+    background-color: #00b205;
+    text-color:       #000000;
+}
+element-text {
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 14;
+  padding: 0 10 0 0;
+}
+
+entry {
+  background-color: #00b205;
+  padding: 4;
+  text-color: #000000;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+listview {
+  padding: 8 12;
+  background-color: @bg;
+  columns: 1;
+  lines: 9;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+prompt {
+  background-color: #00b205;
+  enabled: true;
+  padding: 4 0 0 4;
+  text-color: #000000;
+}
+
+/* vim: ft=sass
