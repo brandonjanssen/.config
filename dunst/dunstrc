@@ -1,6 +1,6 @@
 [global]
     frame_width = 1
-    frame_color = "#FF772B"
+    # frame_color = "#FF772B"
     font = Ubuntu Mono Bold 10
 
 
@@ -279,23 +279,25 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1F2335"
-    foreground = "#fafafa"
+    background = "#3B4261"
+    foreground = "#ABB1CF"
+    frame_color = "#ABB1CF"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     # icon = /home/brodie/.config/dunst/normal.png
 
 [urgency_normal]
-    background = "#1F2335"
-    foreground = "#fafafa"
+    background = "#3B4261"
+    foreground = "#9ECE6A"
+    frame_color = "#9ECE6A"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     # icon = /home/brodie/.config/dunst/normal.png
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#3B4261"
+    foreground = "#ED6F83"
+    frame_color = "#ED6F83"
     timeout = 5
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /home/brodie/.config/dunst/critical.png
