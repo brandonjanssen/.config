@@ -13,15 +13,15 @@
 # Designed for playlist-less use, via mplay in Extra repository on GitHub.
 #------------------------------------------------------------------------------MISC
 
-status                    =     red       default     normal
-title                     =     green       default     normal
-state                     =     yellow       default     normal
+status                    =     yellow      default     bold
+title                     =     cyan       default     bold
+state                     =     yellow       default     bold
 
-enabled                   =     green      default     normal
-disabled                  =     white       default     normal
+enabled                   =     green      default     bold
+disabled                  =     white       default     bold
 
-sound_parameters          =     white       default     normal
-legend                    =     white       default     normal
+sound_parameters          =     magenta      default     bold
+legend                    =     magenta       default     bold
 
 error                     =     red         default     normal
 message                   =     white       default     bold
@@ -34,26 +34,26 @@ window_title              =     red        default     bold
 
 #-----------------------------------------------------------------------------FILES
 
-directory                 =     white        default     normal
-selected_directory        =     green        default     underline
+directory                 =     white        default     bold
+selected_directory        =     cyan        default     bold,underline
 
-file                      =     white       default     normal
-selected_file             =     green       default     underline
-marked_selected_file      =     red         default      underline
-marked_file               =     red         default     underline
+file                      =     white       default     bold
+selected_file             =     green       default     bold,underline
+marked_selected_file      =     red         default      bold,underline
+marked_file               =     red         default     bold,underline
 
-info                      =     white       default     normal
-selected_info             =     white       green       underline
+info                      =     white      default     bold
+selected_info             =     black      green       bold,underline
 marked_info               =     red         default     bold
 marked_selected_info      =     red         default     bold
 
 #-----------------------------------------------------------------------------TIMES
 
-current_time              =     green       default     normal
-time_left                 =     red       default     normal
-total_time                =     white       default     normal
+current_time              =     green       default     bold
+time_left                 =     red       default       bold
+total_time                =     white       default     bold
 time_total_frames         =     green       default     normal
-plist_time                =     red       default     normal
+plist_time                =     red       default     bold
 
 #------------------------------------------------------------------------------BARS
 
@@ -65,5 +65,5 @@ filled_time_bar           =     default     default       normal
 
 #-----------------------------------------------------------------------------ENTRY
 
-entry                     =     white       default     normal
-entry_title               =     white       default     normal
+entry                     =     magenta      default     bold
+entry_title               =     white       default     bold
