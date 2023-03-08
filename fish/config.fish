@@ -211,11 +211,11 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first'  # long format
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
-alias l.='exa -a | egrep "^\."'
+alias ls='lsd -al --color=always --group-directories-first' # my preferred listing
+alias la='lsd -a --color=always --group-directories-first'  # all files and dirs
+alias ll='lsd -l --color=always --group-directories-first'  # long format
+alias lt='lsd -aT --color=always --group-directories-first' # tree listing
+alias l.='lsd -a | egrep "^\."'
 
 
 
@@ -309,15 +309,16 @@ alias bupskel='cp -Rf /etc/skel ~/.skel-backup-(date +%Y.%m.%d-%H.%M.%S)'
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
-colorscript random
+#colorscript random
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
 #pfetch | lolcat
+nitch
 #neofetch
 #cowsay mooooo | lolcat
 date
-figlet "FISH House" | lolcat
+#figlet "FISH House" | lolcat
 zoxide init fish | source
 # set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"
 # source /usr/share/powerline/bindings/fish/powerline-setup.fish
