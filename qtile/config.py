@@ -26,6 +26,7 @@ mod = "mod4"
 mod1 = "alt"
 mod2 = "control"
 myTerm = "kitty"
+myVol = "pulse"
 # myBrowser = "google-chrome-stable"
 # logoutMenu = "kitty -e herbst-logout.sh"
 
@@ -37,7 +38,7 @@ keys = [
         Key([mod, "shift"], "r", lazy.restart(), desc='Restart Qtile'),
         #=-/ Terminals /-=#
         Key([mod], "Return", lazy.spawn("kitty -e fish"), desc='Run Launcher'),
-        Key([mod, "shift"], "Return", lazy.spawn("xfce4-terminal -e fish"), desc='kitty'),
+        Key([mod, "shift"], "Return", lazy.spawn("alacritty "), desc='kitty'),
         Key([mod], "r", lazy.spawn("feh --randomize --bg-fill /home/dmne/Pictures/background")),
         Key([mod], "space", lazy.spawn("rofi -show drun -show-icons -modi drun,run")),
         Key([mod2,"shift"], "space", lazy.spawn("kitty -e  /home/dmne/.config/nnn/plugins/launch")),
@@ -47,13 +48,18 @@ keys = [
         Key([mod], "x", lazy.spawn(" archlinux-logout ")),
         # Key([mod], "x", lazy.spawn(".config/rofi/powermenu.sh ")),
         Key([mod], "t", lazy.spawn("thunar")),
-        Key([mod], "e", lazy.spawn("kitty -e micro")),
+        Key([mod], "e", lazy.spawn("kitty -e micro /home/dmne/.config/qtile/config.py")),
         Key([mod], "o", lazy.spawn("obsidian")),
         Key([mod], "d", lazy.spawn("telegram-desktop")),
         Key([mod], "m", lazy.spawn("kitty -e mocp")),
         Key([mod, "shift"], "t", lazy.spawn("kitty -e ranger"), desc='NNN'),
         #=-/ Browsers /-=#
-        Key([mod], "w", lazy.spawn("brave"), desc='chromium-browser'),
+        Key([mod], "w", lazy.spawn("brave-browser"), desc='chromium-browser'),
+
+        #######  VOLUME WITH PAMIXER
+        Key([mod2], "bracketright", lazy.spawn("pamixer --increase 5"), desc='volume-up'),
+        Key([mod2], "bracketleft", lazy.spawn("pamixer --decrease 5"), desc='volume-down'),
+        Key([mod2], "equal", lazy.spawn("pamixer --toggle-mute"), desc='mute'),
 
         # Emacs programs launched using the key chord CTRL+e followed by 'key'
         KeyChord([mod],"i", [
@@ -92,6 +98,7 @@ keys = [
          # Key([mod,"shift"], "n", lazy.layout.normalize(), desc='normalize window size ratios'),
          # Key([mod,"shift"], "m", lazy.layout.maximize(), desc='toggle window between minimum and maximum sizes'),
          Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+         Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='toggle float'),
 
          #=-/ Stack and master manipulation /-=#
          Key([mod, "shift"], "z", lazy.layout.rotate(), lazy.layout.flip(), desc='flip master and stack'),
@@ -106,7 +113,7 @@ keys = [
          Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
          Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
          Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
-
+        
 
         # INCREASE/DECREASE BRIGHTNESS
         Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 10")),
@@ -132,23 +139,23 @@ keys = [
 ]
 
 #=-/ Window groups settings /-=#
-groups = [Group(" 1 ", layout='monadtall'),
-          Group(" 2 ", layout='monadtall'),
-          Group(" 3 ", layout='monadtall'),
-          Group(" 4 ", layout='monadtall'),
-          Group(" 5 ", layout='monadtall'),
-          Group(" 6 ", layout='monadtall'),
-          Group(" 7 ", layout='monadtall'),
-          Group(" 8 ", layout='monadtall'),
-          Group(" 9 ", layout='monadtall'),
+groups = [Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
+          Group("", layout='monadtall'),
           #=-/ Scratchpad groups /-=#
           ScratchPad("music",[DropDown("tunes", "kitty -e mocp", x=0.2, y=0.02, width=0.60, height=0.43, on_focus_lost_hide=False)]),
           # ScratchPad("pulse",[DropDown("mixer", "kitty -e pulsemixer", x=0.33, y=0.02, width=0.35, height=0.95, on_focus_lost_hide=False)]),
           ScratchPad("logout",[DropDown("exitMenu", "/usr/bin/clearine ", x=0.40, y=0.30, width=0.20, height=0.20, on_focus_lost_hide=False)]),
           ScratchPad("tel",[DropDown("telegram", "telegram-desktop", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
-          ScratchPad("scratchpad",[DropDown("term", "kitty -e fish", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False)]),
+          ScratchPad("scratchpad",[DropDown("term", "kitty -e fish", x=0.12, y=0.02, width=0.75, height=0.3, on_focus_lost_hide=False)]),
           ScratchPad("manager",[DropDown("nnn", "kitty -e nnn", x=0.35, y=0.02, width=0.3, height=0.80, on_focus_lost_hide=False)]),
-          ScratchPad("pulse",[DropDown("mixer", "kitty -e pulsemixer", x=0.12, y=0.02, width=0.75, height=0.4, on_focus_lost_hide=False)]),
+          ScratchPad("pulse",[DropDown("mixer", "kitty -e pulsemixer", x=0.12, y=0.02, width=0.75, height=0.3, on_focus_lost_hide=False)]),
 ]
 
 from libqtile.dgroups import simple_key_binder
@@ -214,8 +221,8 @@ widget_defaults = dict(
     font="Ubuntu Nerd Font Bold",  ### NERD FONT https://www.nerdfonts.com/font-downloads
     fontsize = 10,
     padding = 2,
-    # background="#3F445F88"
-    background="#3F445F"
+    # background="#00000088"
+    background="#000000"
 )
 extension_defaults = widget_defaults.copy()
 
@@ -225,28 +232,32 @@ def init_widgets_list():
                     # widget.CurrentLayout(),
                     widget.GroupBox(
                          # disable_drag=True,
-                         active="#c1c1c1",
-                        #  active="#05ff00",
-                         inactive="#2880FF",
+                         font ='Ubuntu Nerd Font Bold',
+                         fontsize = 20,
+                         # active="#FF006D",
+                         active="#2880ff",
+                         inactive="#c1c1c1",
+                         this_current_screen_border = "#05ff00",
                          rounded=True,
-                         highlight_method='line',
+                         highlight_method='text',
                          highlight_text_color='red',
-                         borderwidth=3,
-                         highlight_color="#5f79FF",
+                         borderwidth=4,
+                         # highlight_color="#5f79FF",
                         #  this_current_screen_boarder="#ffffff",
-                        #  this_screen_boarder="#3F445F",
+                        #  this_screen_boarder="#000000",
                         #  other_current_screen_boarder="#3b6699",
-                        #  highlight_color="#383838",
-                         # background="#3F445F88",
-                         background="#3F445F",
+                         # highlight_color= ['#ffffff', '#00ffff'],
+                         # background="#00000088",
+                         background="#000000",
+                         fourground = "#c1c1c1",
                         #  foreground="#FF8000",
                         #  background_inactive='#ffffff',
-                        #  background_active='#ffffff',
-                         padding = 0,
+                         # background_active='#ffffff',
+                         padding = 1,
                          decorations=[
                            BorderDecoration(
-                               colour = "#2880FF",
-                               border_width = [0, 0, 2, 0],
+                               colour = "#c1c1c1",
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None
                            )
@@ -255,16 +266,16 @@ def init_widgets_list():
 
 
                       widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=10,
                         decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
-                               colour = "#3F445F",
+                               colour = "#000000",
                                 # colour = "#2880FF",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
@@ -273,8 +284,8 @@ def init_widgets_list():
 
                     widget.WindowName(
                        foreground="#05ff00",
-                       background="#3F445F",
-                       # background="#3F445F",
+                       background="#000000",
+                       # background="#000000",
                        font="Ubuntu Nerd Font Bold ",
                        fontsize=8,
                        padding = 0,
@@ -282,7 +293,7 @@ def init_widgets_list():
                            BorderDecoration(
                             #    colour = colors[9],
                                colour = "#05ff00",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None
                            )
@@ -291,16 +302,16 @@ def init_widgets_list():
 
 
                       widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=8,
                         decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
-                               colour = "#3F445F",
+                               colour = "#000000",
                                 # colour = "#2880FF",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
@@ -323,21 +334,21 @@ def init_widgets_list():
             #            padding = 0
             #       ),
                     widget.Moc(
-                         background="#3F445F",
+                         background="#000000",
                          foreground="#FF006D",
                          font="Ubuntu Nerd Font Bold ",
-                         fontsize=8,
+                         fontsize=9,
                          update_interval=1,
                          padding = 0,
                          decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
                                colour = "#FF006D",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None
                     #    widget.Cmus(
-                    #      background="#3F445F",
+                    #      background="#000000",
                     #      foreground="#FF29C2",
                     #      font="Ubuntu Bold Italic ",
                     #      fontsize= 7,
@@ -352,7 +363,7 @@ def init_widgets_list():
                     #        BorderDecoration(
                     #         #    colour = colors[9],
                     #            colour = "#FF29C2",
-                    #            border_width = [0, 0, 2, 0],
+                    #            border_width = [0, 0, 3, 0],
                     #            padding_x = 0,
                     #            padding_y = None
                            )
@@ -360,16 +371,16 @@ def init_widgets_list():
                     ),
 
                       widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=8,
                         decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
-                               colour = "#3F445F",
+                               colour = "#000000",
                                 # colour = "#2880FF",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
@@ -381,8 +392,8 @@ def init_widgets_list():
                          crypto="BTC",
                          # foreground="#2880FF",
                          foreground="#FEDE00",
-                         background="#3F445F",
-                         # background="#3F445F",
+                         background="#000000",
+                         # background="#000000",
                          currency = "USD",
                          symbol = "$",
                          font = "Ubuntu Nerd Font Bold",
@@ -392,22 +403,22 @@ def init_widgets_list():
                            BorderDecoration(
                             #    colour = colors[9],
                                colour = "#FEDE00",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None
                            )
                     ],
                     ),
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=1,
                         decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
-                               colour = "#3F445F",
-                               border_width = [0, 0, 2, 0],
+                               colour = "#000000",
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
@@ -418,8 +429,8 @@ def init_widgets_list():
 
 
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=8,
                         decorations=[
@@ -437,16 +448,17 @@ def init_widgets_list():
                     widget.Net(
                         font="FiraCode Bold",
                         fontsize=12,
-                        interface="wlp2s0",
+                        interface="enp3s0",
+#                        interface="wlan0",
                         format = '{down} ↓↑ {up}',
                         foreground="#b63cff",
-                        background="#3F445F",
+                        background="#000000",
                         padding = 0,
                         decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
                                colour = "#b63cff",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
@@ -454,8 +466,8 @@ def init_widgets_list():
                     ),
 
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=1,
                         decorations=[
@@ -469,8 +481,8 @@ def init_widgets_list():
                     ],
                     ),
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=8,
                         decorations=[
@@ -489,23 +501,23 @@ def init_widgets_list():
                        font="FiraCode Bold",
                        fontsize=12,
                        foreground="#FF8000",
-                       background="#3F445F",
-                       # background="#3F445F",
+                       background="#000000",
+                       # background="#000000",
                        threshold = 90,
                        padding = 0,
                        decorations=[
                            BorderDecoration(
                             #    colour = colors[9],
                                colour = "#ff8000",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
                     ],
                     ),
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                #        linewidth="0",
                         padding=8,
                         decorations=[
@@ -522,7 +534,7 @@ def init_widgets_list():
 
 
                     # widget.Memory(
-                    #     background="#3F445F",
+                    #     background="#000000",
                     #     foreground="#FF8000",
                     #     padding=10
                     #  #  font=
@@ -533,38 +545,48 @@ def init_widgets_list():
                         font="FiraCode Bold",
                         fontsize=12,
                         foreground = "#2880FF",
-                        background = "#3F445F",
+                        background = "#000000",
                         mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                        fmt = 'Mem: {}',
+                        fmt = 'Mem:{}',
                         padding = 0,
                         decorations=[
                            BorderDecoration(
                                colour = "#2880FF",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
                     ],
                     ),
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                     #   linewidth="0",
                         padding=8
                     ),
 
                     # widget.DF(
-                    #     foreground="#ffffff",
-                    #     background="#3F445F",
-                    #     padding=10
-
-
+                        # foreground="#ffffff",
+                        # background="#000000",
+                        # fmt = '/:{}',
+                        # partition = "/",
+                    #     padding=0,
+                    #     decorations=[
+                    #        BorderDecoration(
+                    #            colour = "#05ff00",
+                    #            border_width = [0, 0, 3, 0],
+                    #            padding_x = 0,
+                    #            padding_y = None
+                    #         )
+                    #    ],
                     # ),
+
+
 
                     # widget.ThermalSensor(
                     #     foreground = "#f3f50c",
                     #     foreground_alert = "#FF0000",
-                    #     background = "#3F445F",
+                    #     background = "#000000",
                     #     metric = True,
                     #     padding = 3,
                     #     threshold = 80
@@ -574,29 +596,32 @@ def init_widgets_list():
                         font="FiraCode Bold",
                         fontsize=12,
                         foreground = "#05ff00",
-                        background = "#3F445F",
-                        threshold = 80,
+                        foreground_alert = "ff0000",
+                        background = "#000000",
+                        tag_sensor = "Tctl",
+                        update_interval = 2,
+                        threshold = 70,
                         fmt = 'Temp: {}',
                         padding = 0,
                         decorations=[
                            BorderDecoration(
                                colour = "#05ff00",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None
                             )
                        ],
                     ),
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                     #   linewidth="0",
                         padding=8
                     ),
 
                     # widget.Clock(
                     #    foreground = "#c1c1c1",
-                    #    background = "#3F445F",
+                    #    background = "#000000",
                     #    format = "%a %b %d  %H:%M",
                     #    padding = 5
                     # ),
@@ -604,12 +629,12 @@ def init_widgets_list():
                         font="FiraCode Bold",
                         fontsize=12,
                         foreground = "#c1c1c1",
-                        background = "#3F445F",
-                        format = "%a %b %d  %H:%M",
+                        background = "#000000",
+                        format = "%a %b %d %H:%M:%S",
                         decorations=[
                            BorderDecoration(
                                colour = "#c1c1c1",
-                               border_width = [0, 0, 2, 0],
+                               border_width = [0, 0, 3, 0],
                                padding_x = 0,
                                padding_y = None,
                            )
@@ -617,16 +642,43 @@ def init_widgets_list():
 
                     ),
                     widget.Sep(
-                        background="#3F445F",
-                        foreground="#3F445F",
+                        background="#000000",
+                        foreground="#000000",
                     #   linewidth="0",
                         padding=8
+                    ),
+
+                    widget.Volume(
+                        font="Ubuntu Nerd Font Bold",
+                        fontsize=12,
+                        # fmt = "",
+                        fmt = 'Vol {}',
+                        # step = 5,
+                        foreground = "#00FFFF",
+                        background = "#000000",
+                        mouse_callbacks = {'Button3':lazy.group['pulse'].dropdown_toggle('mixer')},
+                        # format = "%a %b %d %H:%M:%S",
+                        decorations=[
+                           BorderDecoration(
+                               colour = "#00FFFF",
+                               border_width = [0, 0, 3, 0],
+                               padding_x = 0,
+                               padding_y = None,
+                           )
+                    ],
+
+                    ),
+                    widget.Sep(
+                        background="#000000",
+                        foreground="#000000",
+                    #   linewidth="0",
+                        padding=5
                     ),
 
                     widget.Systray(
                         #background="#878787",
                         # background="#737C85",
-                        background="#3F445F",
+                        background="#000000",
                         padding=0,
                         decorations=[
                            BorderDecoration(
@@ -657,10 +709,10 @@ def init_screens():
         # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         # margin=[0, 26, 5, 10], ### FOR BROKEN LAPTOP
         margin=[8, 0, 0, 0],
-        background='#3F445F',
-        # background='#3F445F',
+        background='#000000',
+        # background='#000000',
         opacity=1.0,
-        size=20))]
+        size=24))]
         # wallpaper='~/.config/herbstluftwm/wallpaper/teal/city.jpg',
         # wallpaper_mode='fill')]
 
@@ -696,6 +748,12 @@ floating_layout = layout.Floating(
     # default_float_rules include: utility, notification, toolbar, splash, dialog,
     # file_progress, confirm, download and error.
     *layout.Floating.default_float_rules,
+    Match(wm_type="utility"),
+    Match(wm_type="notification"),
+    Match(wm_type="toolbar"),
+    Match(wm_type="pop-up"),
+    Match(wm_type="splash"),
+    Match(wm_type="dialog"),
     Match(title='Confirmation'),      # tastyworks exit box
     Match(title='Qalculate!'),        # qalculate-gtk
     Match(wm_class='kdenlive'),       # kdenlive
@@ -715,9 +773,13 @@ floating_layout = layout.Floating(
     Match(wm_class="browser-window"),  # ssh-askpass
     Match(wm_class="Skype"),  # ssh-askpass
     Match(wm_class="Yad"),  # ssh-askpass
+    Match(wm_class="cachybrowser"),  # ssh-askpass
+    Match(wm_class="Steam"),  # ssh-askpass
+    Match(wm_class="localsend_app"),  # ssh-askpass
     # Match(wm_class="google-chrome"),  # ssh-askpass
     Match(wm_class="pavucontrol"),  # ssh-askpass
     Match(wm_class="Imager"),  # ssh-askpass
+    Match(wm_class="timeshift"),  # ssh-askpass         
     Match(wm_class="livecaptions"),  # ssh-askpass
     Match(wm_class="crx_fcfcfllfndlomdhbehjjcoimbgofdncg"),  # ssh-askpass
     Match(wm_class="system-config-printer"),  # ssh-askpass
