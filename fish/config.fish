@@ -314,7 +314,8 @@ alias bupskel='cp -Rf /etc/skel ~/.skel-backup-(date +%Y.%m.%d-%H.%M.%S)'
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
 #pfetch | lolcat
-nitch
+#nitch
+fastfetch
 #neofetch
 #cowsay mooooo | lolcat
 date
